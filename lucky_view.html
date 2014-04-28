@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width " />-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1, user-scalable=no" />
+<title></title>
+
+<style>
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var,i{font-style:normal;font-weight:normal}strong{font-weight:bold}li{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}input,textarea,select{*font-size:100%}legend{color:#000}
+a,button{hide-focus:expression(this.hideFocus=true)}
+button{background:none;border:none;cursor:pointer;padding:0;outline:none}
+body{font-size:12px;color:#888;background:#f8f6f1;font-family:Arial,Helvetica,sans-serif,"\5b8b\4f53"}
+a:link{color:#333;text-decoration:none}
+a:visited{color:#333;text-decoration:none}
+a:hover{color:#333;text-decoration:underline}
+a:active{color:#333;text-decoration:none}
+p{line-height:1.6}
+.fn-clear:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
+.fn-clear {zoom:1;/* for IE6 IE7 */}
+
+
+body{margin:0 auto;}
+.main_wx{padding:20px;}
+
+
+#luck .top{text-align:center;}
+.desk{width:280px; height:254px; background:url(image/wx/luck.png) no-repeat; margin:0 auto; position:relative; cursor:pointer}
+.desk img{margin:50px 0 0 0;}
+#plate{-webkit-transform:rotate(0deg); -moz-transform:rotate(0deg); -o-transform:rotate(0deg); -ms-transform:rotate(0deg); -webkit-transition: -webkit-transform 2s;-moz-transition: -moz-transform 2s; -o-transition: -o-transform 2s; -ms-transition: -ms-transform 2s;}
+#plate.spining{-webkit-transform:rotate(2565deg); -moz-transform:rotate(2565deg); -o-transform:rotate(2565deg); -ms-transform:rotate(2565deg);}
+#plate.first{-webkit-transform:rotate(2535deg); -moz-transform:rotate(2535deg); -o-transform:rotate(2535deg); -ms-transform:rotate(2535deg);}
+#plate.second{-webkit-transform:rotate(2595deg); -moz-transform:rotate(2595deg); -o-transform:rotate(2595deg); -ms-transform:rotate(2595deg);}
+#plate.third{-webkit-transform:rotate(2655deg); -moz-transform:rotate(2655deg); -o-transform:rotate(2655deg); -ms-transform:rotate(2655deg);}
+#plate.fourth{-webkit-transform:rotate(2715deg); -moz-transform:rotate(2715deg); -o-transform:rotate(2715deg); -ms-transform:rotate(2715deg);}
+#plate.fifth{-webkit-transform:rotate(2775deg); -moz-transform:rotate(2775deg); -o-transform:rotate(2775deg); -ms-transform:rotate(2775deg);}
+#plate.sixth{-webkit-transform:rotate(2835deg); -moz-transform:rotate(2835deg); -o-transform:rotate(2835deg); -ms-transform:rotate(2835deg);}
+
+
+
+
+.section{background:#ff8e00; border-radius:3px; box-shadow:0 0 3px #000; padding:2px; margin-top:10px;}
+.section div.innerSection{border:1px dashed #dfdfdf;}
+.section h5{background:#228200; color:#fff; padding:2px 15px}
+.section div.innerSection div{padding:2em;}
+.section div.innerSection div p{color:#333}
+.section div.innerSection div p.red{color:red}
+/*
+#plate.spining{transform:rotate(720deg);}
+*/
+</style>
+<script type="text/javascript" src="js/jquery_v1.7.1.js"></script>
+
+
+</head>
+<body>
+<div class="main_wx">
+	<div id="luck">
+         
+    	<div class="top">
+        	<div class="desk" id="desk">
+        		<img id="plate" src="image/wx/arrow.png" width="107px" height="139px">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+/*
+var aa = function(defaultT){
+	var rad = (defaultT-tail+360*5+45)*Math.PI/180,
+		m11 = Math.cos(rad),
+		m12 = -1 * Math.sin(rad),
+		m21 = Math.sin(rad); 	
+	var sProperties = [[m11,m12],[m21, m11]];
+	ele.style.filter = 'progid:DXImageTransform.Microsoft.Matrix(M11=' + sProperties[0][0] + ',M12=' + sProperties[0][1] + ',M21='
++ sProperties[1][0] + ',M22=' + sProperties[1][1] + ',SizingMethod="auto expand")';
+}
+*/
+/*
+setInterval(function () {
+	rotate(document.getElementById('plate'), 50);
+}, 100);
+
+function generateMatrix(angle) {
+	var rad = angle * (Math.PI / 180),
+		m11 = Math.cos(rad),
+		m12 = -1 * Math.sin(rad),
+		m21 = Math.sin(rad);
+	return [
+		[m11, m12],
+		[m21, m11]
+	];
+}
+function rotate(d, angle) {
+	if (!d.orig) {
+		d.orig = {
+			height:d.offsetHeight,
+			width:d.offsetWidth,
+			marginTop:parseInt(document.getElementById(d).style.marginTop) || 0,
+			marginLeft:parseInt(document.getElementById(d).style.marginLeft) || 0
+		};
+	}
+	var style = d.style;
+	var matrix = generateMatrix(angle);
+		style.filter = 'progid:DXImageTransform.Microsoft.Matrix(M11=' + matrix[0][0] + ',M12=' + matrix[0][1] + ',M21='
+			+ matrix[1][0] + ',M22=' + matrix[1][1] + ',SizingMethod="auto expand")';
+		//style.marginTop = (orig.height-d.offsetHeight) /2;
+		//style.marginLeft = (orig.width-d.offsetWidth) /2;
+		//setXy(0.5, 0, matrix, d);
+}
+*/
+$(function(){
+	$('#desk').click(function(){
+		run()
+	})
+})
+var spin = function(ele){
+	var defaultT = ele.style.webkitTransform ? ele.style.webkitTransform.match(/(\d+)/)[0] : 0;
+	var tail = defaultT%360;
+	var r = Math.round(Math.random()*10);
+	var a = ele.style.webkitTransform = "rotate("+(defaultT-tail+360*5+45+60*r)+"deg)";
+}
+var first = function(ele){
+	var defaultT = ele.style.webkitTransform ? ele.style.webkitTransform.match(/(\d+)/)[0] : 0;
+	var tail = defaultT%360;
+	var a = ele.style.webkitTransform = "rotate("+(defaultT-tail+360*5+15)+"deg)";
+}
+var second = function(ele){
+	var defaultT = ele.style.webkitTransform ? ele.style.webkitTransform.match(/(\d+)/)[0] : 0;
+	var tail = defaultT%360;
+	var a = ele.style.webkitTransform = "rotate("+(defaultT-tail+360*5+75)+"deg)";
+}
+var third = function(ele){
+	var defaultT = ele.style.webkitTransform ? ele.style.webkitTransform.match(/(\d+)/)[0] : 0;
+	var tail = defaultT%360;
+	var a = ele.style.webkitTransform = "rotate("+(defaultT-tail+360*5+135)+"deg)";
+}
+var fourth = function(ele){
+	var defaultT = ele.style.webkitTransform ? ele.style.webkitTransform.match(/(\d+)/)[0] : 0;
+	var tail = defaultT%360;
+	var a = ele.style.webkitTransform = "rotate("+(defaultT-tail+360*5+195)+"deg)";
+}
+var fifth = function(ele){
+	var defaultT = ele.style.webkitTransform ? ele.style.webkitTransform.match(/(\d+)/)[0] : 0;
+	var tail = defaultT%360;
+	var a = ele.style.webkitTransform = "rotate("+(defaultT-tail+360*5+255)+"deg)";
+}
+var sixth = function(ele){
+	var defaultT = ele.style.webkitTransform ? ele.style.webkitTransform.match(/(\d+)/)[0] : 0;
+	var tail = defaultT%360;
+	var a = ele.style.webkitTransform = "rotate("+(defaultT-tail+360*5+315)+"deg)";
+}
+var cellOut = function(){
+	popup.alert_small('<p>请输入您的电话号码，以便联系您领取奖品<input id="cellId" type=text ></p><p><a id="cell" href="javascript:void(0)">确认</a></p>','抽奖');
+	$('cell').click(function(){
+		$.ajax({
+			url:'/wxlucky/do_profile',
+			dataType:'json',
+			data:{mobile:$('#cellId').val()},
+			success:function(d){
+				if(d.code == 0){alert_type4('已保存电话')}
+			}
+		})
+	})
+}
+var run = function(){
+	first(document.getElementById('plate'));
+}
+/*
+var run = function(){
+	$.ajax({
+		url:'/wxlucky/run',
+		dataType:'json',
+		success:function(d){
+			if(d.code == 0){
+				if(d.msg.price == {/literal}'{$info.first_prize}'{literal}){first(document.getElementById('plate'));setTimeout(function(){alert('恭喜您，中了'+d.msg.price);cellOut()},2000)}
+				else if(d.msg.price == {/literal}'{$info.second_prize}'{literal}){second(document.getElementById('plate'));setTimeout(function(){alert('恭喜您，中了'+d.msg.price)},2000);cellOut()}
+				else if(d.msg.price == {/literal}'{$info.third_prize}'{literal}){third(document.getElementById('plate'));setTimeout(function(){alert('恭喜您，中了'+d.msg.price)},2000);cellOut()}
+				else if(d.msg.price == {/literal}'{$info.four_prize}'{literal}){fourth(document.getElementById('plate'));setTimeout(function(){alert('恭喜您，中了'+d.msg.price)},2000);cellOut()}
+				else if(d.msg.price == {/literal}'{$info.fifth_prize}'{literal}){fifth(document.getElementById('plate'));setTimeout(function(){alert('恭喜您，中了'+d.msg.price)},2000);cellOut()}
+				else if(d.msg.price == {/literal}'{$info.six_prize}'{literal}){sixth(document.getElementById('plate'));setTimeout(function(){alert('恭喜您，中了'+d.msg.price)},2000);cellOut()}
+				else{spin(document.getElementById('plate'));setTimeout(function(){alert(d.msg.price);},2000)}
+				setTimeout(function(){document.getElementById('count').firstChild.nodeValue++},2000)
+			}else{
+				alert(d.msg)
+			}
+		}
+	})
+}
+*/
+
+</script>
+
+</body>
+</html>

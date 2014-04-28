@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width " />-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1, user-scalable=no" />
+<title></title>
+<style>
+body,h1,h2,h3,h4,h5,h6,p,form,ul,ol,li,dt,dl,dd,th,td,label,bottom,input,textarea{ margin:0;padding:0;}
+.clearfix:after{ content:"\20"; display:block; clear:both; height:0}
+.clearfix:after{ *zoom:1}
+.container{
+	width:620px;
+	margin:20px auto 0;
+	position:relative;
+}
+.container>div.cube{
+	width:200px;
+	height:200px;
+	background:#666;
+	float:left;
+	display:inline;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+.container>div.mr0{
+	margin-right:0;
+}
+.container #highlight{
+	transition: -webkit-transform .5s ease;
+  	-webkit-transform: translate3d(0, 0, 0);
+	background:#F00;
+	width:200px;
+	height:200px;
+	position:absolute;
+}
+.container #highlight.slide_level {
+  -webkit-transform: translate3d(210px, 0, 0);
+}
+.container #highlight.slide_level {
+  -webkit-transform: translate3d(210px, 0, 0);
+}
+</style>
+<script type="text/javascript" src="jquery  v1.7.1.js"></script>
+</head>
+<body>
+	<div class="container">
+    	<div id="highlight"></div>
+    	<div class="cube"></div>
+        <div class="cube"></div>
+        <div class="mr0 cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="mr0 cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="mr0 cube"></div>
+    </div>
+
+<script>
+var an_1 = function(ele){
+	console.log(1);
+	ele.style.webkitTransform = 'translate3d(420px, 0, 0)';
+}
+var an_2 = function(ele){
+	console.log(2);
+	ele.style.webkitTransform = 'translate3d(420px, 420px, 0)';
+}
+var an_3 = function(ele){
+	console.log(3);
+	ele.style.webkitTransform = 'translate3d(0, 420px, 0)';
+}
+var an_4 = function(ele){
+	console.log(4);
+	ele.style.webkitTransform = 'translate3d(0, 0, 0)';
+}
+var ani_stack = function(aniArray,time,ele){
+	for(var i=0,l=aniArray.length;i<l;i++){
+		setTimeout(function(){aniArray[i](ele)},time)
+	}
+}
+var run = function(){
+	var funs = [an_1,an_2,an_3,an_4];
+	var ele = document.getElementById('highlight');
+	ani_stack(funs,200,ele);
+/*
+	setTimeout(function(){an_1(ele)},1000)
+	setTimeout(function(){console.log(document.getElementById('highlight').style.webkitTransform);},2000)
+*/
+}
+
+
+run();
+
+
+var spin = function(ele){
+	var defaultT = ele.style.webkitTransform ? ele.style.webkitTransform.match(/(\d+)/)[0] : 0;
+	var tail = defaultT%360;
+	var r = Math.round(Math.random()*10);
+	var a = ele.style.webkitTransform = "rotate("+(defaultT-tail+360*5+45+60*r)+"deg)";
+}
+
+</script>
+</body>
+</html>
